@@ -16,7 +16,6 @@
 .pomodoro-app {
     background: white;
     width: 100%;
-    min-width: 350px;
     max-width: 400px;
     margin: auto auto;
     padding: 20px 30px;

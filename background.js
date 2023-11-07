@@ -5,9 +5,9 @@ let restTime;
 // popup.js listener
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
-  
         studyTime = request.studyTime;
         restTime = request.restTime;
+        
         if (request.type === "start") {
              createAlarm("study", studyTime);
         }
