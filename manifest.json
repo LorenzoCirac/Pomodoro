@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,  
+    "name": "StudyBärli",
+    "version": "1.0.1",
+    "description": "Pomodoro timer for my love",
+    "permissions": [
+      "activeTab",  
+      "storage",
+      "alarms",
+      "notifications"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html"
+    },
+    "web_accessible_resources": [{
+      "resources": ["item.mp3"],
+      "matches": ["<all_urls>"]
+    }]
+}
+  
+  

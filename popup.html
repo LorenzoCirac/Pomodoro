@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    
+
+    <title>StudyBärli</title>
+</head>
+<body>
+    <div class="container">
+        <div class="pomodoro-app">
+            <h1>StudyBärli <img src="bearWithRose.png" alt="bearWithRose"></h1>
+            <div class="settings">
+                <div>
+                    <label for="studySlider">Study time: <span id="studyDisplay">35</span> min</label>
+                    <input id="studySlider" class="slider" type="range" min="1" max="120" value="35">
+                </div>
+                <div>
+                    <label for="restSlider">Rest time: <span id="restDisplay">5</span> min</label>
+                    <input id="restSlider" class="slider" type="range" min="5" max="30" value="5">
+                </div>
+            </div>
+
+            <div class="controller">
+                <button id="button">START</button>      
+            </div>
+            <script type="module" src="popup.js"></script> 
+        </div>
+    </div>
+</body>
+</html>
