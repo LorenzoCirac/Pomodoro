@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/pomodoro.css">
+    <link rel="stylesheet" href="css/todo.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,8 +16,8 @@
 </head>
 <body>
     <div class="container">
-        <div class="pomodoro-app">
-            <h1>StudyBärli <img src="bearWithRose.png" alt="bearWithRose"></h1>
+        <div class="app">
+            <h1>StudyBärli <img src="bearWithRose.png" alt="bearWithRose" class="pomodoro-img"></h1>
             <div class="settings">
                 <div>
                     <label for="studySlider">Study time: <span id="studyDisplay">35</span> min</label>
@@ -27,10 +29,18 @@
                 </div>
             </div>
 
-            <div class="controller">
-                <button id="button">START</button>      
-            </div>
+            <button id="timerButton">START</button>      
             <script type="module" src="popup.js"></script> 
+        </div>
+
+        <div class="app">
+            <h1>To-Do <img src="img/list-emoji.png" alt="list icon" class="list-img"></h1>
+            <div class="row">
+                <input class="input" type="text" id="inputField" placeholder="Create a task">
+                <button id="add-button">ADD</button>
+            </div>
+            <ul id="task-container"></ul>
+            <script type="module" src="todo.js"></script>
         </div>
     </div>
 </body>

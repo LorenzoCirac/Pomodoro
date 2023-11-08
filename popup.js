@@ -16,7 +16,7 @@ restSlider.addEventListener("input", () => {
 });
 
 // BUTTONS
-const button = document.getElementById("button");
+const button = document.getElementById("timerButton");
 button.addEventListener("click", () => sendToBackground(buttonMode));
 
 function sendToBackground(action) {
@@ -40,10 +40,6 @@ function sendToBackground(action) {
     chrome.storage.sync.set({ buttonMode: action });
 }
 
-function playSound() {
-    var audio = new Audio("item.mp3");
-    audio.play();
-}
 
 
 
