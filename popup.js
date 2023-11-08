@@ -37,7 +37,6 @@ function sendToBackground(action) {
         buttonMode = "start";
         button.textContent = "START";
     }
-    chrome.storage.sync.set({ buttonMode: action });
 }
 
 
