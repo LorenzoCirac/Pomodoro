@@ -19,6 +19,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
 // CREATE ALARM
 function createAlarm(type, time) {
+
   console.log("Timer started! Type: " + type + " | time: " + time);
   chrome.alarms.create(type, {
     delayInMinutes: time,
@@ -37,7 +38,7 @@ function clearAlarms() {
     }
   });
   if (discordWebhook != "") {
-    sendDiscord("You stoped the timer" +  "   " + "🐻");
+    sendDiscord("You stoped the timer" + "   " + "🐻");
   }
 }
 
@@ -50,9 +51,6 @@ function createChromeNotification(title, messages) {
     title: title,
     message: messages[ranNum],
   });
-  if (discordWebhook != "") {
-    sendDiscord(messages[ranNum]);
-  }
 }
 
 // REACT TO ALARM
@@ -92,15 +90,6 @@ function sendDiscord(message) {
     .catch((error) => {
       console.error("Error:", error);
     });
-}
-
-function time() {
-  const currentDate = new Date();
-  const hours = currentDate.getHours();
-  const minutes = currentDate.getMinutes();
-  const seconds = currentDate.getSeconds();
-
-  return hours + ":" + minutes + ":" + seconds;
 }
 
 function getRandomInt(max) {
