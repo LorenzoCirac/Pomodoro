@@ -1,27 +1,12 @@
-.list-img {
-    width: 35px;
-    height: 35px;
-    margin: 0px 5px 5px;
-}
-
 .row {
     width: 100%;
+    margin-bottom: 25px;
     position: relative;
-}
-
-.input {
-    border: black solid;
-    outline: none;
-    background: rgb(235, 235, 235);
-    width: 100%;
-    padding: 10px;
-    font-size: 18px;
-    border-radius: 30px;
-    
 }
 
 #add-button {
     height: 100%;
+    padding-left: 15px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-top-right-radius: 30px;
@@ -40,7 +25,7 @@ ul li {
     user-select: none;
     cursor: pointer;
     font-size: 18px;
-    padding: 12px 8px 12px 50px;
+    padding: 12px 8px 12px 12px;
     position: relative;
 }
 
@@ -49,22 +34,11 @@ ul li::before {
     border-radius: 50%;
 }
 
-ul li.checked {
-    color: #555;
-    text-decoration: line-through;
-}
-
-ul li.checked::before {
-    background-image: url("img/checked-emoji.png");
-    height: 24px;
-    width: 24px;
-}
-
 ul li span {
     position: absolute;
     color: #555;
     right: 0px;
-    top: 5px;
+    top: 6px;
     width: 40px;
     height: 40px;
     font-size: 22px;

@@ -37,7 +37,9 @@
     cursor: pointer;
   }
 
-
+.slider-label {
+    font-size: 22px;
+}
 
 
 

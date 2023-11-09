@@ -1,15 +1,19 @@
 
 let studyTime;
 let restTime;
+let webhookDiscord;
 
 // popup.js listener
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
         studyTime = request.studyTime;
         restTime = request.restTime;
-        
-        if (request.type === "start") {
-             createAlarm("study", studyTime);
+
+        if (webhookDiscord === undefined) {
+            webhookDiscord = request.webhook;
+        }
+        else if (request.type === "start") {
+            createAlarm("study", studyTime);
         }
         else if (request.type === "reset") {
             clearAlarms();
@@ -19,17 +23,22 @@ chrome.runtime.onMessage.addListener(
     }
 );
 
-// ALARM functions
+// CREATE ALARM
 function createAlarm(type, time) {
-    console.log("creating alarm | type: " + type);
+    console.log("Timer started! Type: " + type + " | time: " + time);
     chrome.alarms.create(
         type,
         {
             delayInMinutes: time
         }
     );
+    // Discord notification
+    if (webhookDiscord != "") {
+        sendDiscord("Timer started! Type: " + type + " | time: " + time + "   🐻");
+    }
 }
 
+// CLEAR ALL ALARMS
 function clearAlarms() {
     chrome.alarms.getAll(alarms => {
         for (const alarm of alarms) {
@@ -40,32 +49,65 @@ function clearAlarms() {
 }
 
 // CREATE NOTIFICATION
+function createChromeNotification(title, messages) {
+    chrome.notifications.create(null, {
+        type: "basic",
+        iconUrl: "bearWithRose.png",
+        title: title,
+        message: messages[getRandomInt(messages.length)]
+    });
+}
+
+// REACT TO ALARM
 chrome.alarms.onAlarm.addListener(alarm => {
     //clearAlarms();
 
     if (alarm.name == "study") {
         // After study comes rest
-        chrome.notifications.create(null, {
-            type: "basic",
-            iconUrl: "bearWithRose.png",
-            title: "PAUSE",
-            message: restMessages[getRandomInt(restMessages.length)]
-        });
+        createChromeNotification("PAUSE", restMessages);
         createAlarm("pause", restTime);
     }
     else if (alarm.name == "pause") {
         // After rest comes study
-        chrome.notifications.create(null, {
-            type: "basic",
-            iconUrl: "bearWithRose.png",
-            title: "STUDY",
-            message: studyMessages[getRandomInt(studyMessages.length)]
-        });
+        createChromeNotification("STUDY", studyMessages);
         createAlarm("study", studyTime);
     }
 });
 
 // OTHER
+function sendDiscord(message) {
+    const content = {
+        content: message
+    }
+    fetch (webhookDiscord, {
+        method: "Post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(content)
+    })
+    .then(response => {
+        if (response.status === 204) {
+            console.log("Discord: Message sent successfully!")
+        }
+        else {
+            console.error("Discord: Failed to send message", response)
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error)
+    });  
+}
+
+function time() {
+    const currentDate = new Date(); 
+    const hours = currentDate.getHours(); 
+    const minutes = currentDate.getMinutes(); 
+    const seconds = currentDate.getSeconds(); 
+
+    return (hours + ":" + minutes + ":" + seconds);
+}
+
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
@@ -86,9 +128,9 @@ const studyMessages = [
     "The harder you work, the luckier you get.",
     "Study now, shine later.",
     "Stay committed to your goals."
-  ];
+];
 
-  const restMessages = [
+const restMessages = [
     "Enjoy your well-deserved break!",
     "Relax and recharge for the next round!",
     "Take a deep breath and unwind.",
@@ -114,6 +156,5 @@ const studyMessages = [
     "Your hard work deserves a breather!",
     "Rest, and then return with full force!",
     "A short rest, a big comeback!"
-  ];
-  
+];
   
