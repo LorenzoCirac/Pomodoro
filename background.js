@@ -34,7 +34,7 @@ function createAlarm(type, time) {
     );
     // Discord notification
     if (webhookDiscord != "") {
-        sendDiscord("Timer started! Type: " + type + " | time: " + time + "   🐻");
+        sendDiscord("Timer started! Type: " + type + " | time: " + time + "   " + "🐻");
     }
 }
 
