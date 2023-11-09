@@ -50,12 +50,19 @@ function clearAlarms() {
 
 // CREATE NOTIFICATION
 function createChromeNotification(title, messages) {
+    var ranNum = getRandomInt(messages.length);
     chrome.notifications.create(null, {
         type: "basic",
         iconUrl: "bearWithRose.png",
         title: title,
-        message: messages[getRandomInt(messages.length)]
+        message: messages[ranNum]
     });
+
+    // Discord notification
+    if (webhookDiscord != "") {
+        var string = messages[ranNum];
+        sendDiscord(string);
+    }
 }
 
 // REACT TO ALARM
