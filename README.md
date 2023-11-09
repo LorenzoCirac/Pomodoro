@@ -1,4 +1,4 @@
-# Pomodoro Chrome Extension
+# Pomodoro Chrome Extension / StudyBärli
 
 ## Overview
 
